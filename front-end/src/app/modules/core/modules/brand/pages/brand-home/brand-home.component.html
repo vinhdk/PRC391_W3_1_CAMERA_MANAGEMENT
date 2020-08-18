@@ -24,13 +24,13 @@
                         <nb-accordion-item-header>Thao tác</nb-accordion-item-header>
                         <nb-accordion-item-body>
                             <div class="row">
-                                <div class="col-4 my-2">
+                                <div class="col-4 my-2 p-1">
                                     <app-brand-create (useChange)="list.useLoad()"></app-brand-create>
                                 </div>
-                                <div class="col-4 my-2">
+                                <div class="col-4 my-2 p-1">
                                     <app-brand-update (useChange)="list.useLoad()" [row]="list.row"></app-brand-update>
                                 </div>
-                                <div class="col-4 my-2">
+                                <div class="col-4 my-2 p-1">
                                     <button [disabled]="!list.row" [status]="'danger'" (click)="list.useRemove()" nbButton fullWidth>
                                     <span>
                                         <nb-icon [icon]="'close-circle-outline'">
