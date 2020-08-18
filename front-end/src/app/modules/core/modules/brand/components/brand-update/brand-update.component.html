@@ -1,0 +1,32 @@
+<button (click)="openWindow(window, 'Thêm mới')" [disabled]="!row" [status]="'warning'" nbButton fullWidth>
+  <span>
+      <nb-icon [icon]="'plus-circle-outline'">
+      </nb-icon>
+      Cập nhật
+  </span>
+</button>
+<ng-template #window let-data>
+    <nb-card>
+        <nb-card-header>Thông tin thương hiệu</nb-card-header>
+        <nb-card-body style="max-height: 50vh; overflow-y: scroll;">
+            <form [formGroup]="form">
+                <div class="row">
+                    <div class="col-12 my-2">
+                        <span>Tên thương hiệu <span class="text-danger">*</span></span>
+                        <input class="my-2" type="text" placeholder="Ví dụ: Nikon..." [status]="form.get('Name').dirty || form.get('Name').touched ? (form.get('Name').invalid ? 'danger' : 'success') : 'default'" nbInput fullWidth formControlName="Name">
+                        <span *ngIf="(form.get('Name').dirty || form.get('Name').touched) && form.get('Name').invalid" class="text-danger">Sai định dạng tên thương hiệu</span>
+                    </div>
+                </div>
+            </form>
+        </nb-card-body>
+        <nb-card-footer>
+            <button (click)="useUpdate()" [disabled]="form.invalid" [status]="'primary'" nbButton fullWidth>
+            <span>
+                <nb-icon [icon]="'plus-circle-outline'">
+                </nb-icon>
+                Cập nhật
+            </span>
+        </button>
+        </nb-card-footer>
+    </nb-card>
+</ng-template>
