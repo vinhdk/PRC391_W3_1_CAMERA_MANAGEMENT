@@ -1,5 +1,6 @@
 import { Repository, Model } from "sequelize-typescript";
 import { BaseService } from "../services";
+import { FireBaseService } from "src/app/services";
 export class BaseController<T extends Model, C extends Model> {
     protected readonly service: BaseService<T>;
     protected readonly childService: BaseService<C> | any;
@@ -15,19 +16,23 @@ export class BaseController<T extends Model, C extends Model> {
         return this.service.findAll({}, this.childService ? [this.childService.getRepository()] : []);
     }
 
-    public readonly findById = (id: string): Promise<T> => {
-        return this.service.findById({ Id: id }, this.childService ? [this.childService.getRepository()] : []);
+    public readonly findById = (obj: { [key: string]: string }): Promise<T> => {
+        return this.service.findById(obj, this.childService ? [this.childService.getRepository()] : []);
     }
 
     public readonly insert = (data: T): Promise<T> => {
         return this.service.insert(data);
     }
 
-    public readonly update = (data: T, id: string): Promise<[number, T[]]> => {
-        return this.service.update(data, id);
+    public readonly update = (data: T, obj: { [key: string]: string }): Promise<[number, T[]]> => {
+        return this.service.update(data, obj);
     }
 
-    public readonly remove = (id: string): Promise<number> => {
-        return this.service.remove(id);
+    public readonly remove = (obj: { [key: string]: string }): Promise<number> => {
+        return this.service.remove(obj);
+    }
+
+    public readonly useFirebase = () => {
+        return new FireBaseService();
     }
 }

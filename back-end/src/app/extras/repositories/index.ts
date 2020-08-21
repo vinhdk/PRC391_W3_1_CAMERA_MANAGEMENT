@@ -10,11 +10,11 @@ export class BaseRepository<T extends Model> {
     public insert = (data: T): Promise<T> => {
         return this.repository.create(data);
     }
-    public update = (data: T, id: string): Promise<[number, T[]]> => {
-        return this.repository.update(data, { where: { Id: id } });
+    public update = (data: T, obj: { [key: string]: string }): Promise<[number, T[]]> => {
+        return this.repository.update(data, { where: obj });
     }
-    public remove = (id: string): Promise<number> => {
-        return this.repository.destroy({ where: { Id: id } });
+    public remove = (obj: { [key: string]: string }): Promise<number> => {
+        return this.repository.destroy({ where: obj });
     }
     public findById = (expression: WhereOptions, models: Array<Repository<Model>>): Promise<T> => {
         return this.repository.findOne({ where: expression, include: models });

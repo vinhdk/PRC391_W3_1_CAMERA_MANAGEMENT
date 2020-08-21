@@ -1,4 +1,6 @@
-export const CameraSwagger = {
+import { BaseSwagger } from "src/app/extras/swaggers";
+
+export const CameraSwagger = BaseSwagger.initBaseSwagger({
     name: "Camera",
     data: {
         CM: {
@@ -20,13 +22,19 @@ export const CameraSwagger = {
                     type: "integer",
                     format: "int64",
                 },
+                Quantity: {
+                    minLength: 1,
+                    title: "Quantity",
+                    type: "integer",
+                    format: "int64",
+                },
                 Description: {
                     minLength: 1,
                     title: "Description",
                     type: "string",
                 },
             },
-            required: ["Name"],
+            required: ["Name", "Price", "Megapixel", "Quantity", "Image"],
         },
         UM: {
             properties: {
@@ -40,8 +48,31 @@ export const CameraSwagger = {
                     title: "Name",
                     type: "string",
                 },
+                Price: {
+                    minLength: 1,
+                    title: "Price",
+                    type: "integer",
+                    format: "int64",
+                },
+                Megapixel: {
+                    minLength: 1,
+                    title: "Megapixel",
+                    type: "integer",
+                    format: "int64",
+                },
+                Quantity: {
+                    minLength: 1,
+                    title: "Quantity",
+                    type: "integer",
+                    format: "int64",
+                },
+                Description: {
+                    minLength: 1,
+                    title: "Description",
+                    type: "string",
+                },
             },
-            required: ["Name", "Id"],
+            required: ["Id", "Name", "Price", "Megapixel", "Quantity", "Image"],
         },
     },
-};
+});

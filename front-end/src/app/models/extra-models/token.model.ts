@@ -1,4 +1,4 @@
 export class Token {
-  accessToken: string;
-  experied: string;
+  AccessToken: string;
+  Experied: string;
 }

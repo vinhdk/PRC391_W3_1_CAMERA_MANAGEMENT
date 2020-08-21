@@ -15,8 +15,8 @@ export class CategoryController extends BaseController<Category, Camera> {
     public useCreate = async (req: Request, res: Response, next: NextFunction) => {
         const model = new CategoryCM(req.body);
         return await this.insert(model.getData())
-            .then(() => {
-                return res.status(201).json(model);
+            .then((category) => {
+                return res.status(201).json(category.get());
             })
             .catch((err) => {
                 return res.status(400).json({ message: "Có lỗi xảy ra" });
@@ -24,7 +24,7 @@ export class CategoryController extends BaseController<Category, Camera> {
     }
     public useUpdate = async (req: Request, res: Response, next: NextFunction) => {
         const model = new CategoryUM(req.body);
-        return await this.update(model.getData(), model.Id)
+        return await this.update(model.getData(), { Id: model.Id })
             .then(() => {
                 return res.status(201).json(model);
             })
@@ -33,10 +33,10 @@ export class CategoryController extends BaseController<Category, Camera> {
             });
     }
     public useRemove = async (req: Request, res: Response, next: NextFunction) => {
-        return await this.findById(req.params.id)
+        return await this.findById({ Id: req.params.id })
             .then(async (model) => {
                 if (model !== null) {
-                    return await this.remove(req.params.id)
+                    return await this.remove({ Id: req.params.id })
                         .then(() => {
                             return res.status(200).json({ message: "Xóa thành công" });
                         }).catch((err) => {
@@ -58,7 +58,7 @@ export class CategoryController extends BaseController<Category, Camera> {
             });
     }
     public useFindById = async (req: Request, res: Response, next: NextFunction) => {
-        return await this.findById(req.params.id)
+        return await this.findById({ Id: req.params.id })
             .then((arr) => {
                 return res.status(200).json(arr);
             }).catch((err) => {

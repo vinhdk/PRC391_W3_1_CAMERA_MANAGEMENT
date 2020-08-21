@@ -85,8 +85,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (selected.item.data === 'logout') {
           this.logout();
         } else {
-          const hash = document.location.hash.substring(2, document.location.hash.length).split('/');
-          this.router.navigateByUrl(hash[0] + '/' + hash[1] + '/' + hash[2] + '/profile');
+          // const hash = document.location.hash.substring(2, document.location.hash.length).split('/');
+          // this.router.navigateByUrl(hash[0] + '/' + hash[1] + '/' + hash[2] + '/profile');
         }
       }
     );
@@ -123,6 +123,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.tokenService.clearToken();
-    this.router.navigate(['hospital/auth']);
+    this.router.navigate(['auth']);
   }
 }

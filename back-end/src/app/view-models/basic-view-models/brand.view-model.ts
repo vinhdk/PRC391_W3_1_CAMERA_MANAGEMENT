@@ -1,5 +1,3 @@
-import { Brand } from "src/app/models";
-
 export class BrandVM {
     public Id: string;
     public Name: string;

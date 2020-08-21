@@ -1,4 +1,6 @@
-export const CategorySwagger = {
+import { BaseSwagger } from "src/app/extras/swaggers";
+
+export const CategorySwagger = BaseSwagger.initBaseSwagger({
     name: "Category",
     data: {
         CM: {
@@ -27,4 +29,4 @@ export const CategorySwagger = {
             required: ["Name", "Id"],
         },
     },
-};
+});

@@ -24,6 +24,14 @@ export const environment = {
       getById: '/api/Camera/',
       main: '/api/Camera',
     },
+    account: {
+      getById: '/api/Account/',
+      main: '/api/Account',
+    },
+    role: {
+      getById: '/api/Role/',
+      main: '/api/Role',
+    },
   },
 };
 

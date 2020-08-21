@@ -16,4 +16,14 @@ export class Category extends Model<Category> {
 
     @HasMany(() => Camera)
     public Cameras!: Camera[];
+
+    @Default(false)
+    @Column
+    public IsDelete!: boolean;
+
+    @CreatedAt
+    public CreatedAt!: Date;
+
+    @UpdatedAt
+    public UpdatedAt!: Date;
 }

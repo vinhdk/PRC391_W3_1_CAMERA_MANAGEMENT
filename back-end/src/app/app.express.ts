@@ -5,7 +5,6 @@ import { readFileSync } from "fs";
 import { serve, setup } from "swagger-ui-express";
 import { ROUTERS } from "src/app/routers";
 import { environment } from "src/environments/environment";
-import { initSwagger } from "src/app/extras/swaggers";
 import { SWAGGERS } from "src/app/swaggers";
 const open = require("open");
 export class App {
@@ -47,29 +46,16 @@ export class App {
 
     private createSwagger = () => {
         const swaggerJSON = JSON.parse(readFileSync("src/assets/swagger.json").toString());
-        SWAGGERS.forEach((json: {
-            name: string,
-            data: {
-                CM: {
-                    properties: any,
-                    required: string[],
-                },
-                UM: {
-                    properties: any,
-                    required: string[],
-                },
-            },
-        }) => {
-            const swaggerModel = initSwagger(json);
-            for (const key in swaggerModel.paths) {
-                if (swaggerModel.paths.hasOwnProperty(key)) {
-                    const element = swaggerModel.paths[key];
+        SWAGGERS.forEach((swagger) => {
+            for (const key in swagger.paths) {
+                if (swagger.paths.hasOwnProperty(key)) {
+                    const element = swagger.paths[key];
                     swaggerJSON.paths[key] = element;
                 }
             }
-            for (const key in swaggerModel.definitions) {
-                if (swaggerModel.definitions.hasOwnProperty(key)) {
-                    const element = swaggerModel.definitions[key];
+            for (const key in swagger.definitions) {
+                if (swagger.definitions.hasOwnProperty(key)) {
+                    const element = swagger.definitions[key];
                     swaggerJSON.definitions[key] = element;
                 }
             }

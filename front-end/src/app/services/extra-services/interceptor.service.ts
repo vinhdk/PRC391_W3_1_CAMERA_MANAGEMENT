@@ -24,7 +24,7 @@ export class InterceptorService implements HttpInterceptor {
       {
         reportProgress: true,
         setHeaders: {
-          authorization: `${token.accessToken}`,
+          authorization: `${token.AccessToken}`,
         },
       }
     ) : request.clone({ reportProgress: true });

@@ -1,4 +1,4 @@
-<button (click)="openWindow(window, 'Thêm mới')" [disabled]="!row" [status]="'warning'" nbButton fullWidth>
+<button (click)="openWindow(window, 'Cập nhật')" [disabled]="!row" [status]="'warning'" nbButton fullWidth>
   <span>
       <nb-icon [icon]="'plus-circle-outline'">
       </nb-icon>
@@ -6,7 +6,7 @@
   </span>
 </button>
 <ng-template #window let-data>
-    <nb-card>
+    <nb-card style="width: 40vw;">
         <nb-card-header>Thông tin thương hiệu</nb-card-header>
         <nb-card-body style="max-height: 50vh; overflow-y: scroll;">
             <form [formGroup]="form">

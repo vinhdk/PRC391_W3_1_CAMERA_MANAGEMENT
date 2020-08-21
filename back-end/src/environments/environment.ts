@@ -60,10 +60,15 @@ export const environment = {
                 username: "root",
                 password: "123456cb",
                 database: "cameramanagement",
-                host: "34.87.92.197",
+                host: "35.198.196.168",
                 dialect: "mysql",
             },
         },
+    },
+    firebase: {
+        databaseURL: "https://camera-management.firebaseio.com",
+        bucketUrl: "camera-management.appspot.com",
+        linkDownloadFile: "https://storage.googleapis.com/camera-management.appspot.com/",
     },
     jwt: {
         code: "vzicqoasanQhtZicTmeGsBpacNomny",

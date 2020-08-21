@@ -18,9 +18,9 @@ export class BrandHomeComponent implements OnInit {
   }
 
   setting() {
-    this.home = { label: 'Home', icon: 'home-outline', routerLink: 'core/camera', replaceUrl: true };
+    this.home = { label: 'Trang chủ', icon: 'home-outline', routerLink: 'core/camera', replaceUrl: true };
     this.menu = [
-      { label: 'Brand', icon: 'grid-outline', routerLink: this.ownLink, replaceUrl: true }
+      { label: 'Thương hiệu', icon: 'grid-outline', routerLink: this.ownLink, replaceUrl: true }
     ];
   }
 

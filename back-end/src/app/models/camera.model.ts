@@ -2,6 +2,7 @@ import { BelongsTo, Column, CreatedAt, Length, Default, ForeignKey, HasMany, IsU
 import uuid from "uuidv4";
 import { Category } from "./category.model";
 import { Brand } from "./brand.model";
+import { OrderDetail } from "./order-detail.model";
 
 @Table
 export class Camera extends Model<Camera> {
@@ -20,6 +21,9 @@ export class Camera extends Model<Camera> {
 
     @Column
     public Price!: number;
+
+    @Column
+    public Quantity!: number;
 
     @Column
     public Image!: string;
@@ -41,4 +45,17 @@ export class Camera extends Model<Camera> {
 
     @BelongsTo(() => Brand, "BrandId")
     public Brand!: Brand;
+
+    @HasMany(() => OrderDetail)
+    public OrderDetails!: OrderDetail[];
+
+    @Default(false)
+    @Column
+    public IsDelete!: boolean;
+
+    @CreatedAt
+    public CreatedAt!: Date;
+
+    @UpdatedAt
+    public UpdatedAt!: Date;
 }

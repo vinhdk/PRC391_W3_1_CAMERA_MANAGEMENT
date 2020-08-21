@@ -3,7 +3,9 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CameraVM, CameraCM, CameraUM } from 'src/app/models';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CameraService {
 
   apiPaths = environment.apiLink;

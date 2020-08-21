@@ -1,3 +1,59 @@
-<p>
-  camera-home works!
-</p>
+<nb-card>
+    <nb-card-header>
+        <div class="row">
+            <div class="col-8">
+                <app-bread-crumb [home]="home" [menu]="menu"></app-bread-crumb>
+            </div>
+            <div class="col-4">
+                <button (click)="toggleQuery()" [status]="query ? 'danger' : 'primary'" nbButton size="small" class="float-right">
+              <span>
+                  <nb-icon [icon]="query ? 'close-circle-outline' : 'search-outline'">
+                  </nb-icon>
+                  {{query ? 'Đóng' : 'Truy vấn'}}
+              </span>
+          </button>
+            </div>
+        </div>
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row">
+            <div *ngIf="query" class="col-4 mb-2">
+                <nb-accordion multi>
+                    <nb-accordion-item [expanded]="true">
+                        <nb-accordion-item-header>Thao tác</nb-accordion-item-header>
+                        <nb-accordion-item-body>
+                            <div class="row">
+                                <div class="col-4 my-2 p-1">
+                                    <app-camera-create style="width: 100%;" (useChange)="list.useLoad()" [categorys]="list.categorys" [brands]="list.brands"></app-camera-create>
+                                </div>
+                                <div class="col-4 my-2 p-1">
+                                    <app-camera-update style="width: 100%;" (useChange)="list.useLoad()" [brands]="list.brands" [categorys]="list.categorys" [row]="list.row"></app-camera-update>
+                                </div>
+                                <div class="col-4 my-2 p-1">
+                                    <button [disabled]="!list.row" [status]="'danger'" (click)="list.useRemove()" nbButton fullWidth>
+                                  <span>
+                                      <nb-icon [icon]="'close-circle-outline'">
+                                      </nb-icon>
+                                      Xóa
+                                  </span>
+                              </button>
+                                </div>
+                            </div>
+                        </nb-accordion-item-body>
+                    </nb-accordion-item>
+                    <nb-accordion-item [expanded]="true">
+                        <nb-accordion-item-header>Tìm kiếm thông tin cơ bản</nb-accordion-item-header>
+                        <nb-accordion-item-body>
+                            <span class="my-2">Tên máy ảnh</span><br>
+                            <input type="text" class="mb-2" (input)="list.useFilter($event.target.value)" nbInput fullWidth status="basic" placeholder="Tên, Ví dụ: A300..">
+                        </nb-accordion-item-body>
+                    </nb-accordion-item>
+                </nb-accordion>
+            </div>
+            <div class="col-{{query ? 8 : 12}}">
+                <app-camera-list #list></app-camera-list>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

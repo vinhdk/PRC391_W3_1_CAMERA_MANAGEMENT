@@ -23,12 +23,12 @@ export abstract class BaseService<T extends Model> {
         return this.initRepository().insert(data);
     }
 
-    public readonly update = (data: T, id: string): Promise<[number, T[]]> => {
-        return this.initRepository().update(data, id);
+    public readonly update = (data: T, obj: { [key: string]: string }): Promise<[number, T[]]> => {
+        return this.initRepository().update(data, obj);
     }
 
-    public readonly remove = (id: string): Promise<number> => {
-        return this.initRepository().remove(id);
+    public readonly remove = (obj: { [key: string]: string }): Promise<number> => {
+        return this.initRepository().remove(obj);
     }
 
     public readonly getRepository = (): Repository<T> => {

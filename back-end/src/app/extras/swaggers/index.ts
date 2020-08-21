@@ -1,28 +1,20 @@
-export const initSwagger = (
-    options: {
-        name: string,
-        data: {
-            CM: {
-                properties: any,
-                required: string[],
-            },
-            UM: {
-                properties: any,
-                required: string[],
+export class BaseSwagger {
+    public static initBaseSwagger = (
+        options: {
+            name: string,
+            data: {
+                CM: {
+                    properties: any,
+                    required: string[],
+                },
+                UM: {
+                    properties: any,
+                    required: string[],
+                },
             },
         },
-    },
-) => {
-    const definitions = options.name === "Auth"
-        ? {
-            [options.name + "GM"]: {
-                additionalProperties: false,
-                properties: options.data.CM.properties,
-                required: options.data.CM.required,
-                type: "object",
-            },
-        }
-        : {
+    ) => {
+        const definitions = {
             [options.name + "CM"]: {
                 additionalProperties: false,
                 properties: options.data.CM.properties,
@@ -36,64 +28,7 @@ export const initSwagger = (
                 type: "object",
             },
         };
-    const paths = options.name === "Auth"
-        ? {
-            [`/api/${options.name}`]: {
-                get: {
-                    tags: [options.name],
-                    operationId: options.name + "_Get",
-                    consumes: [
-                        "application/json",
-                        "application/json-patch+json",
-                        "text/json",
-                        "application/*+json",
-
-                    ],
-                    responses: {
-                        200: {
-                            "x-nullable": true,
-                            "description": "",
-                        },
-                    },
-                    security: [{
-                        JWT: [],
-                    }],
-                },
-
-            },
-            [`/api/${options.name}/Token`]: {
-                post: {
-                    tags: [options.name],
-                    operationId: options.name + "_PostToken",
-                    consumes: [
-                        "application/json",
-                        "application/json-patch+json",
-                        "text/json",
-                        "application/*+json",
-
-                    ],
-                    parameters: [{
-                        "name": "model",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            $ref: "#/definitions/" + options.name + "GM",
-                        },
-                        "x-nullable": false,
-                    }],
-                    responses: {
-                        200: {
-                            "x-nullable": true,
-                            "description": "",
-                        },
-                    },
-                    security: [{
-                        JWT: [],
-                    }],
-                },
-            },
-        }
-        : {
+        const paths = {
             [`/api/${options.name}`]: {
                 get: {
                     tags: [options.name],
@@ -233,8 +168,167 @@ export const initSwagger = (
                 },
             },
         };
-    return {
-        definitions,
-        paths,
-    };
-};
+        return {
+            definitions,
+            paths,
+        };
+    }
+
+    public static initAuthSwagger = (
+        options: {
+            name: string,
+            data: {
+                GM: {
+                    properties: any,
+                    required: string[],
+                },
+                CM: {
+                    properties: any,
+                    required: string[],
+                },
+                UM: {
+                    properties: any,
+                    required: string[],
+                },
+            },
+        },
+    ) => {
+        const definitions = {
+            [options.name + "GM"]: {
+                additionalProperties: false,
+                properties: options.data.GM.properties,
+                required: options.data.GM.required,
+                type: "object",
+            },
+            [options.name + "CM"]: {
+                additionalProperties: false,
+                properties: options.data.CM.properties,
+                required: options.data.CM.required,
+                type: "object",
+            },
+            [options.name + "UM"]: {
+                additionalProperties: false,
+                properties: options.data.UM.properties,
+                required: options.data.UM.required,
+                type: "object",
+            },
+        };
+        const paths = {
+            [`/api/${options.name}`]: {
+                get: {
+                    tags: [options.name],
+                    operationId: options.name + "_Get",
+                    consumes: [
+                        "application/json",
+                        "application/json-patch+json",
+                        "text/json",
+                        "application/*+json",
+
+                    ],
+                    responses: {
+                        200: {
+                            "x-nullable": true,
+                            "description": "",
+                        },
+                    },
+                    security: [{
+                        JWT: [],
+                    }],
+                },
+                post: {
+                    tags: [options.name],
+                    operationId: options.name + "_Post",
+                    consumes: [
+                        "application/json",
+                        "application/json-patch+json",
+                        "text/json",
+                        "application/*+json",
+
+                    ],
+                    parameters: [{
+                        "name": "model",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            $ref: "#/definitions/" + options.name + "CM",
+                        },
+                        "x-nullable": false,
+                    }],
+                    responses: {
+                        200: {
+                            "x-nullable": true,
+                            "description": "",
+                        },
+                    },
+                    security: [{
+                        JWT: [],
+                    }],
+                },
+                put: {
+                    tags: [options.name],
+                    operationId: options.name + "_Put",
+                    consumes: [
+                        "application/json",
+                        "application/json-patch+json",
+                        "text/json",
+                        "application/*+json",
+
+                    ],
+                    parameters: [{
+                        "name": "model",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            $ref: "#/definitions/" + options.name + "UM",
+                        },
+                        "x-nullable": false,
+                    }],
+                    responses: {
+                        200: {
+                            "x-nullable": true,
+                            "description": "",
+                        },
+                    },
+                    security: [{
+                        JWT: [],
+                    }],
+                },
+            },
+            [`/api/${options.name}/Token`]: {
+                post: {
+                    tags: [options.name],
+                    operationId: options.name + "_PostToken",
+                    consumes: [
+                        "application/json",
+                        "application/json-patch+json",
+                        "text/json",
+                        "application/*+json",
+
+                    ],
+                    parameters: [{
+                        "name": "model",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            $ref: "#/definitions/" + options.name + "GM",
+                        },
+                        "x-nullable": false,
+                    }],
+                    responses: {
+                        200: {
+                            "x-nullable": true,
+                            "description": "",
+                        },
+                    },
+                    security: [{
+                        JWT: [],
+                    }],
+                },
+            },
+        };
+        return {
+            definitions,
+            paths,
+        };
+    }
+}

@@ -15,13 +15,23 @@ export class LayoutComponent implements OnInit {
     },
     {
       title: 'Loại máy',
-      icon: 'car-outline',
+      icon: 'pantone-outline',
       url: '/#/core/category',
     },
     {
       title: 'Thương hiệu',
-      icon: 'award-outline',
+      icon: 'grid-outline',
       url: '/#/core/brand',
+    },
+    {
+      title: 'Tài khoản',
+      icon: 'people-outline',
+      url: '/#/core/account',
+    },
+    {
+      title: 'Tác vụ',
+      icon: 'shield-outline',
+      url: '/#/core/role',
     },
   ];
   constructor() { }

@@ -1,4 +1,6 @@
-export const BrandSwagger = {
+import { BaseSwagger } from "src/app/extras/swaggers";
+
+export const BrandSwagger = BaseSwagger.initBaseSwagger({
     name: "Brand",
     data: {
         CM: {
@@ -27,4 +29,4 @@ export const BrandSwagger = {
             required: ["Name", "Id"],
         },
     },
-};
+});

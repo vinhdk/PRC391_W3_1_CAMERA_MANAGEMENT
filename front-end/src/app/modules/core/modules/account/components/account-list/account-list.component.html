@@ -1,0 +1,16 @@
+<ngx-datatable id="specialize-table" class='table table-hover material' (select)="useSelect($event)" [columnMode]="'force'" [reorderable]="true" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [rows]="filterRows" [scrollbarH]="true" [selectionType]="'single'"
+    [limit]="10" [messages]="{emptyMessage: 'Không có dữ liệu để hiển thị',totalMessage: 'tổng cộng',selectedMessage: 'đã chọn'}">
+    <ngx-datatable-column [name]="'Tên tài khoản'" [width]="100" [prop]="'Username'">
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Họ và Tên'" [width]="200" [prop]="'Fullname'">
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Thư điện tử'" [width]="200" [prop]="'Email'">
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Số điện thoại'" [width]="100" [prop]="'Phone'">
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Tác vụ'" [width]="100" [prop]="'RoleId'">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ useGetRole(value) }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

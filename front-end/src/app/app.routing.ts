@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'core',
     loadChildren: () => import('./modules/core/core.module').then(mod => mod.CoreModule),
-    // canLoad: [AppGuard]
+    canLoad: [AppGuard]
   },
 ];
 
