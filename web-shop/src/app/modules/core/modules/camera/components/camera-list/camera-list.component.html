@@ -1,0 +1,30 @@
+<ngx-datatable id="specialize-table" class='table table-hover material' (select)="useSelect($event)" [columnMode]="'force'" [reorderable]="true" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [rows]="filterRows" [scrollbarH]="true" [selectionType]="'single'"
+    [limit]="10" [messages]="{emptyMessage: 'Không có dữ liệu để hiển thị',totalMessage: 'tổng cộng',selectedMessage: 'đã chọn'}">
+    <ngx-datatable-column [name]="'Tên'" [width]="100" [prop]="'Name'">
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Số lượng'" [width]="100" [prop]="'Quantity'">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{value | number: '.0'}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Giá'" [width]="100" [prop]="'Price'">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{value | number: '.0'}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Độ phân giải'" [width]="100" [prop]="'Megapixel'">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{value | number: '.1'}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Thương hiệu'" [width]="100" [prop]="'BrandId'">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ useGetBrand(value) }}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [name]="'Loại máy'" [width]="100" [prop]="'CategoryId'">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <span>{{ useGetCategory(value)}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

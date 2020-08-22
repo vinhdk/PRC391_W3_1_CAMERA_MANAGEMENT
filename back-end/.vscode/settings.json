@@ -1,3 +1,9 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/4c519ead-21e8-4969-9314-4655fc1cb37a/resourceGroups/camera-management/providers/Microsoft.Web/sites/camera-management",
+    "appService.deploySubpath": "."
 }

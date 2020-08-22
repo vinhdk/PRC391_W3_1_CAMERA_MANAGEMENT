@@ -36,7 +36,7 @@ export const environment = {
                 token: "/api/Auth/Token",
             },
         },
-        endPoint: "http://localhost:8888",
+        endPoint: "https://camera-management.et.r.appspot.com",
     },
     database: {
         config: {

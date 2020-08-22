@@ -5,7 +5,7 @@ import { MODELS } from "src/app/models";
 export class Context {
     public readonly sequelize: Sequelize;
     constructor() {
-        const config: any = environment.database.config.development;
+        const config: any = environment.database.config.production;
         this.sequelize = new Sequelize({
             models: [...MODELS], ...config,
             dialect: config.dialect,

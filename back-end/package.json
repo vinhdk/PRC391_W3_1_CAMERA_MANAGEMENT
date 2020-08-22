@@ -2,18 +2,18 @@
     "name": "back-end",
     "version": "1.0.0",
     "description": "",
-    "main": "src/index.ts",
+    "main": "dist/wm/index.js",
     "scripts": {
         "dev": "nodemon index.ts",
-        "dev:debug": "nodemon --inspect src/index.ts",
-        "start": "node dist/wm/src/index.js",
+        "dev:debug": "nodemon --inspect index.ts",
+        "start": "node dist/wm/index.js",
         "gcloud:deploy": "gcloud app deploy",
         "gcloud:init": "gcloud init",
         "gcloud:browser": "gcloud app browse",
         "build": "tsc -w --outDir dist/wm"
     },
     "_moduleAliases": {
-        "src": "src"
+        "src": "dist/wm/src"
     },
     "author": "",
     "license": "ISC",
@@ -50,7 +50,7 @@
         "body-parser": "^1.19.0",
         "ejs": "^2.7.1",
         "express": "^4.17.1",
-        "firebase": "^7.18.0",
+        "firebase": "^7.7.0",
         "firebase-admin": "^8.9.1",
         "fs": "0.0.1-security",
         "jsonwebtoken": "^8.5.1",

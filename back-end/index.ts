@@ -1,2 +1,2 @@
 import "module-alias/register";
-import "./app/app.deploy";
+import "./src/app/app.deploy";

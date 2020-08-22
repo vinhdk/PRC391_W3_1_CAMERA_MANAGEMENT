@@ -98,6 +98,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         console.log(data);
       });
+    this.picture = '../../assets/camera.png';
   }
 
   ngOnDestroy() {
